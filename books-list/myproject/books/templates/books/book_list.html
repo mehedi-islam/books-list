@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Book Collection</h1>
+
+<div class="book-grid">
+    {% for book in books %}
+    <div class="book-card">
+        <h2 class="book-title">{{ book.title }}</h2>
+        <p class="book-author">by {{ book.author }}</p>
+        <p class="book-date">Published: {{ book.published_date }}</p>
+        <div class="book-actions">
+            <a href="{% url 'book_detail' book.pk %}" class="btn btn-primary">View Details</a>
+            <a href="{% url 'book_update' book.pk %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'book_delete' book.pk %}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>No books available.</p>
+    {% endfor %}
+</div>
+
+<a href="{% url 'book_create' %}" class="btn btn-primary">Add New Book</a>
+{% endblock %}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Book Library{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="{% url 'book_list' %}" class="nav-brand">Book Library</a>
+            <div class="nav-links">
+                <a href="{% url 'book_list' %}">Books</a>
+                <a href="{% url 'book_create' %}">Add Book</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Md Mehedi Islam. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

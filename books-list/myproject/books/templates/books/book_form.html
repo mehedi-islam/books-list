@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h2>{% if book %}Edit Book{% else %}New Book{% endif %}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="form-label" for="title">Title:</label>
+            <input class="form-input" type="text" id="title" name="title" value="{{ book.title|default:'' }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="author">Author:</label>
+            <input class="form-input" type="text" id="author" name="author" value="{{ book.author|default:'' }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="description">Description:</label>
+            <textarea class="form-textarea" id="description" name="description" required>{{ book.description|default:'' }}</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="published_date">Published Date:</label>
+            <input class="form-input" type="date" id="published_date" name="published_date" value="{{ book.published_date|date:'Y-m-d'|default:'' }}" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{% url 'book_list' %}" class="btn btn-danger">Cancel</a>
+    </form>
+</div>
+{% endblock %}
